@@ -5,11 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import Interfaces.*;
-import Parser.*;
-import Prova.*;
-import factories.*;
-import Token.*;
+import model.token.*;
+import model.main.*;
+import model.parser.*;
+import model.interfaces.*;
 class TestsLexer {
 
 	@Test

@@ -1,14 +1,10 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JTextField;
 
-import Prova.Controller;
-import Token.NotWellFormedFormulaException;
+import controller.Controller;
 
 public class FunctionField extends JTextField {
 	private static final long serialVersionUID = 1L;

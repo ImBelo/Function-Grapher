@@ -1,20 +1,14 @@
 package view;
 
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import Interfaces.Expression;
-import Prova.Controller;
-import Prova.ExpressionImpl;
+import controller.Controller;
+import model.interfaces.Expression;
+import model.main.ExpressionImpl;
 
 public class InputPanel extends JPanel {
 	private static final long serialVersionUID = 1L;

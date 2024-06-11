@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import Interfaces.Expression;
-import Interfaces.Function;
-import Interfaces.Parser;
-import Parser.ParserImpl;
-import Prova.ExpressionImpl;
-import Token.NotWellFormedFormulaException;
+import model.interfaces.Expression;
+import model.interfaces.Function;
+import model.interfaces.Parser;
+import model.main.ExpressionImpl;
+import model.parser.ParserImpl;
+import model.token.NotWellFormedFormulaException;
 
 class TestsParser {
 		@Test
