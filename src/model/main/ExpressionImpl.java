@@ -1,6 +1,12 @@
 package model.main;
 
 import model.interfaces.Expression;
+import model.interfaces.Function;
+import model.interfaces.Lexer;
+import model.interfaces.Parser;
+import model.parser.ParserImpl;
+import model.token.VariableX;
+import model.token.VariableY;
 
 public class ExpressionImpl implements Expression{
 	private String expression = "";
@@ -15,6 +21,7 @@ public class ExpressionImpl implements Expression{
 		this.expression = expr;
 		arity = checkArity(expr);
 	}
+	
 
 	public String getExpression() {
 		return expression != null?expression:null;

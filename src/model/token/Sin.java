@@ -1,11 +1,15 @@
 package model.token;
 
 
-public class Sin extends AbstractUnaryFunction {
+public class Sin extends UnaryFunction {
 
 	public Sin(Token child) {
 		super(child);
-		super.setType(TokenType.SINE);
+		super.setType(FunctionType.SINE);
+	}
+
+	public Sin() {
+		super.setType(FunctionType.SINE);
 	}
 
 	@Override

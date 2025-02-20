@@ -1,6 +1,6 @@
 package model.token;
 
-public class MyNumber extends AbstractToken implements Token{
+public class MyNumber extends AbstractToken {
 	private double num;
 	public MyNumber(double num){
 		this.setNum(num);

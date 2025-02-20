@@ -1,10 +1,14 @@
 package model.token;
 
-public class Cos extends AbstractUnaryFunction {
+public class Cos extends UnaryFunction {
 
 	public Cos(Token child) {
 		super(child);
-		super.setType(TokenType.COSINE);
+		super.setType(FunctionType.COSINE);
+	}
+
+	public Cos() {
+		super.setType(FunctionType.COSINE);
 	}
 
 	@Override 

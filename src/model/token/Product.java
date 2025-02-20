@@ -1,11 +1,15 @@
 package model.token;
 
 
-public class Product extends AbstractBinaryFunction{
+public class Product extends BinaryFunction{
 
 	public Product(Token left, Token right) {
 		super(left, right);
-		this.setType(TokenType.TIMES);
+		this.setType(OperationType.TIMES);
+	}
+	public Product() {
+		super(null,null);
+		super.setType(OperationType.TIMES);
 	}
 	public double getValue() {
 		super.isWellFormed("Product not well formed");

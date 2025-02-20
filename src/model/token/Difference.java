@@ -1,10 +1,15 @@
 package model.token;
 
-public class Difference extends AbstractBinaryFunction{
+public class Difference extends BinaryFunction{
 
 	public Difference(Token left,Token right) {
 		super(left, right);
-		this.setType(TokenType.MINUS);
+		this.setType(OperationType.MINUS);
+	}
+
+	public Difference() {
+		super(null,null);
+		super.setType(OperationType.MINUS);
 	}
 
 	@Override

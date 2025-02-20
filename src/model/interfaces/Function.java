@@ -1,8 +1,11 @@
 package model.interfaces;
 
-public interface Function {
+import model.token.Token;
 
-	double evaluateAt(double ...num);
+public interface Function {
+	public double evaluateAt(double ...num);
+	public Token getRoot();
+	public void setRoot(Token t);
 
 	
 

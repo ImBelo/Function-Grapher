@@ -3,10 +3,15 @@ package model.token;
 
 
 
-public class Sum extends AbstractBinaryFunction{
+public class Sum extends BinaryFunction{
 	public Sum(Token left, Token right) {
 		super(left, right);
-		super.setType(TokenType.PLUS);
+		super.setType(OperationType.PLUS);
+	}
+
+	public Sum() {
+		super(null,null);
+		super.setType(OperationType.PLUS);
 	}
 
 	@Override
@@ -16,7 +21,10 @@ public class Sum extends AbstractBinaryFunction{
 		double right = realValue(super.getRight());
 		return left + right;
 	}
-
+	@Override
+	public String toString() {
+		return "+";
+	}
 
 	
 	

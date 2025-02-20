@@ -1,7 +1,8 @@
 package model.interfaces;
 
 public interface Camera {
-
+	public void zoom(double scale,double x,double y);
+	public void translate(double dx,double dy);
 	double getCameraX();
 	double getCameraY();
 	double getCameraHeight();

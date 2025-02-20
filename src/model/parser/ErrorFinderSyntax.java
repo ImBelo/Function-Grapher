@@ -8,13 +8,13 @@ import model.token.NotWellFormedFormulaException;
 import model.token.TokenType;
 
 public class ErrorFinderSyntax {
-public static boolean checkExpression(Expression exprLeft) {
+public static boolean checkExpression(Expression exprLeft)  {
 		removeSpaces(exprLeft);
 		return  checkFunctions(exprLeft) && checkParentheses(exprLeft) && checkIllegalChar(exprLeft) && checkNumber(exprLeft); 
 	}
-public static void removeSpaces(Expression expr) {
+public static void removeSpaces(Expression expr)  {
 	if(expr == null || expr.getExpression() == null) {
-		throw new NotWellFormedFormulaException(null,null);
+		throw new NotWellFormedFormulaException("Expression is null");
 	}
 	String content = expr.getExpression();
 	Pattern pattern = Pattern.compile(" ");
@@ -26,9 +26,9 @@ public static void removeSpaces(Expression expr) {
     }
    	  	
 }
-public static boolean checkFunctions(Expression expr) {
+public static boolean checkFunctions(Expression expr)  {
 	if(expr == null) {
-		throw new NotWellFormedFormulaException(null,null);
+		throw new NotWellFormedFormulaException("Expression is null");
 	}
 	String content = expr.getExpression();
 	Pattern pattern = Pattern.compile("[a-wA-W]+");
@@ -38,17 +38,17 @@ public static boolean checkFunctions(Expression expr) {
     {	
     	String name= "";
     	exist = false;
-    	for(int i=0;i<TokenType.getFunctions().size();i++) {
+    	for(var function:TokenType.getFunctions()) {
     		name = matcher.group();
-    		if(name.toLowerCase().equals(TokenType.getFunctions().get(i).getData().toLowerCase())){
+    		if(name.toLowerCase().equals(function.getData().toLowerCase())){
     			exist = true;
     		}
     	}
-    	if (!exist) throw new NotWellFormedFormulaException("wrong function",null);  
+    	if (!exist) throw new NotWellFormedFormulaException("No such funtion exist");  
     	}
 	return exist;	
 }
-public static boolean checkParentheses(Expression expr) {
+public static boolean checkParentheses(Expression expr)  {
 	String content = expr.getExpression();
 	int counter = 0;
 	for (int i =0;i < content.length();i++) {
@@ -59,27 +59,28 @@ public static boolean checkParentheses(Expression expr) {
 		
 	}
 	if(counter != 0) {
-		throw new NotWellFormedFormulaException("wrong parenthesis",null);
+		throw new NotWellFormedFormulaException("wrong parenthesis");
 	}
 	return true;
 	
 }
 public static boolean checkIllegalChar(Expression expr) {
 	if(expr == null ) {
-		throw new NotWellFormedFormulaException(null,null);
+		throw new NotWellFormedFormulaException("Expression is null");
+		
 	}
 	String content = expr.getExpression();
 	// not allowed characters
 	Pattern pattern = Pattern.compile("[^A-Za-z0-9|+|\\-|^|/|*\\(|)|.]");
     Matcher matcher = pattern.matcher(content);   
     if (matcher.find()){
-    	throw new NotWellFormedFormulaException("Symbol not in alphabet",null);
+    	throw new NotWellFormedFormulaException("Symbol not in alphabet");
     }
     return true;
 }
-public static boolean checkNumber(Expression expr) {
+public static boolean checkNumber(Expression expr)  {
 	if(expr == null) {
-		throw new NotWellFormedFormulaException(null,null);
+		throw new NotWellFormedFormulaException("Expression is null");
 	}
 	String content = expr.getExpression();
 	int comma = 0;
@@ -99,7 +100,7 @@ public static boolean checkNumber(Expression expr) {
 		}
 		
 		if(comma!=0 && comma != 1) 
-			throw new NotWellFormedFormulaException("Number not formed correctly",null);
+			throw new NotWellFormedFormulaException("Number not formed correctly");
 	}
 	return true;
 }

@@ -1,11 +1,16 @@
 package model.token;
 
 
-public class Division extends AbstractBinaryFunction {
+public class Division extends BinaryFunction {
 
 	public Division(Token left, Token right) {
 		super(left, right);
-		super.setType(TokenType.DIVIDED_BY);
+		super.setType(OperationType.DIVIDED_BY);
+	}
+
+	public Division() {
+		super(null,null);
+		super.setType(OperationType.DIVIDED_BY);
 	}
 
 	@Override

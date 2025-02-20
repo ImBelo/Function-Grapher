@@ -1,58 +1,91 @@
 package model.parser;
 
 import model.interfaces.TokenList;
+import model.token.ClosedParentheses;
 import model.token.NotWellFormedFormulaException;
+import model.token.OpenParentheses;
 import model.token.Product;
 import model.token.Token;
 import model.token.TokenType;
+import model.token.Type;
 
 public class ErrorFinderSemantic {
 	public static boolean checkSemantic(TokenList tokens) {
-		return checkOperations(tokens);
+		return AddOmittedMultiplication(tokens) && CheckOmittedParenthesesFunction(tokens);
 	}
-	// (x+2)
-	public static boolean checkOperations(TokenList tokens) {	
-		if (tokens == null)
-			throw new NotWellFormedFormulaException(null, null);
-		/*for(int i = 0; i<tokens.length();i++) {// i cicles token list
-				TokenType left = i!=0?tokens.getToken(i-1).getType():null;
-				TokenType right = i!=tokens.length()-1?tokens.getToken(i+1).getType():null;
-				if (TokenType.getOperations().contains(tokens.getToken(i).getType())) {
-					if(left == TokenType.OPEN_PARENTHESES ||
-					   right == TokenType.CLOSED_PARENTHESES && 
-					   (right == null || left == null));
-						throw new NotWellFormedFormulaException(null, null);
-				}
-				
-				
-			}*/
-		return true;
-	}
-
-	public static boolean checkNumber(TokenList tokens) {	
-		/*
-		for(int i = 0; i<tokens.length()-1;i++) {
+	public static boolean CheckOmittedParenthesesFunction(TokenList tokens) {
+		for(int i = 0; i<tokens.length()-1;i++) { 
+			Token curr = tokens.getToken(i);
+			Token next = tokens.getToken(i==tokens.length()?null:i+1);
+			Type currType = curr.getType();
+			Type nextType = next.getType();
+		/*	boolean isFunction = TokenType.getFunctions()
+					.stream()
+					.map(f->f.getData())
+					.anyMatch(s->s.equals(nextData));
+			boolean isNextVariable = TokenType.getVariables()
+					.stream()
+					.map(f->f.getData())
+					.anyMatch(s->s.equals(nextData));
+			boolean isCurrVariable = TokenType.getVariables()
+					.stream()
+					.map(f->f.getData())
+					.anyMatch(s->s.equals(currData));*/
 			
+			// Ex.
+			// logx+2*x-sinx
+			// to log(x)+2*x-sin(x)
+			if(TokenType.getFunctions().contains(currType) &&
+				TokenType.getVariables().contains(nextType)) {
+				 tokens.addTokenAt(++i,new OpenParentheses());
+				 tokens.addTokenAt(i+=2,new ClosedParentheses());
+			}
+			
+		}
+		return true;
+		
+		
+		
+	}
+	public static boolean AddOmittedMultiplication(TokenList tokens) {	
+		
+		for(int i = 0; i<tokens.length()-1;i++) {
+	
 				Token curr = tokens.getToken(i);
-				Token next = tokens.getToken(i==tokens.length()?i:i+1);
-				TokenType currType = curr.getType();
-				TokenType nextType = next.getType();
-				if(curr.getType() == TokenType.NUMBER ||
-				   TokenType.getVariables().contains(currType) &&	
-				   TokenType.getFunctions().contains(nextType) ||
-				   TokenType.getVariables().contains(nextType) ||
-				   TokenType.getOperations().contains(nextType)||
-				   TokenType.OPEN_PARENTHESES == nextType) {
+				Token next = tokens.getToken(i==tokens.length()?null:i+1);
+				String currData = curr.getData();
+				String nextData = next.getData();
+				Type currType = curr.getType();
+				Type nextType = next.getType();
+				// Ex. 2x+2log(x)
+				// to
+				// 2*x+2*log(x)
+				
+				boolean isFunction = TokenType.getFunctions()
+						.stream()
+						.map(f->f.getData())
+						.anyMatch(s->s.equals(nextData));
+				boolean isNextVariable = TokenType.getVariables()
+						.stream()
+						.map(f->f.getData())
+						.anyMatch(s->s.equals(nextData));
+				boolean isCurrVariable = TokenType.getVariables()
+						.stream()
+						.map(f->f.getData())
+						.anyMatch(s->s.equals(currData));
+				
+				if(curr!=null && curr.getType() == TokenType.NUMBER  &&
+					isNextVariable ||
+					(isCurrVariable) &&
+					isFunction){
 				   tokens.addTokenAt(++i,new Product(null,null));
-				   break;
+				   
 				
 				   
-			}
-		}*/
+				}
+		}
 		return true;
-	}
-	public static boolean checkUnaryFunctions(TokenList tokens) {	
-		return true;
-	}
 
+
+	}
 }

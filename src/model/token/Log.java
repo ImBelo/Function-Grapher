@@ -2,11 +2,15 @@ package model.token;
 
 
 
-public class Log extends AbstractUnaryFunction{
+public class Log extends UnaryFunction{
 
 	public Log(Token child) {
 		super(child);
-		super.setType(TokenType.LOG);
+		super.setType(FunctionType.LOG);
+	}
+
+	public Log() {
+		super.setType(FunctionType.LOG);
 	}
 
 	@Override

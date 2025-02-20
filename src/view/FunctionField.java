@@ -9,12 +9,12 @@ import controller.ControllerImpl;
 
 public class FunctionField extends JTextField implements Field{
 	private static final long serialVersionUID = 1L;
-	private static final int WIDTH = 226;
+	protected static final int WIDTH = 226;
 	private static final int HEIGHT = 50;
 	private static int xPos = 0;
 	private static int yPos = 0;
 	private int index = 0;
-	private String function;
+	private Field linkedIntervalField;
 	public FunctionField() {
 		super();
 		index = yPos/HEIGHT;
@@ -22,7 +22,11 @@ public class FunctionField extends JTextField implements Field{
 		this.setFont(font1); 
 		this.setBounds(xPos,yPos,WIDTH,HEIGHT);
 		
-	} 
+	}
+	public IntervalField getLinkedField() {
+		return (IntervalField) linkedIntervalField;
+	}
+	
 	public static void next(){
 		yPos+=HEIGHT;
 		
@@ -31,14 +35,20 @@ public class FunctionField extends JTextField implements Field{
 		yPos-=HEIGHT;
 	}
 	@Override
-	public String getFunction() {
-		return function;
+	public String getText() {
+		return super.getText();
 	}
 	public void setFunction(String function) {
-		this.function = function;
+		super.setText(function);
 	}
 	public int getIndex() {
 		return index;
+	}
+
+	@Override
+	public void linkField(Field field) {
+		this.linkedIntervalField = field;
+		
 	}
 	
 	

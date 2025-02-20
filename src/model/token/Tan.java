@@ -1,17 +1,20 @@
 package model.token;
 
-public class Tan extends AbstractUnaryFunction {
+public class Tan extends UnaryFunction {
 
 	public Tan(Token child) {
 		super(child);
-		super.setType(TokenType.TANGENT);
+		super.setType(FunctionType.TANGENT);
+	}
+
+	public Tan() {
+		super.setType(FunctionType.TANGENT);
 	}
 
 	@Override
 	public double getValue() {
-		if(super.getChild() == null)
-			throw new NotWellFormedFormulaException(null,null);
-		return Math.tan(super.getChild().getValue());
+		double child = realValue(super.getChild());
+		return Math.tan(child);
 	}
 
 	

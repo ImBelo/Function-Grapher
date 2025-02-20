@@ -1,10 +1,15 @@
 package model.token;
 
-public class Pow extends AbstractBinaryFunction{
+public class Pow extends BinaryFunction{
 
 	public Pow(Token left, Token right) {
 		super(left, right);
-		super.setType(TokenType.RAISED_TO);
+		super.setType(OperationType.RAISED_TO);
+	}
+
+	public Pow() {
+		super(null,null);
+		super.setType(OperationType.RAISED_TO);
 	}
 
 	@Override

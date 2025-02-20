@@ -5,7 +5,7 @@ public class VariableY extends AbstractVariable implements Variable{
 	 
 
 	    public VariableY() {
-	    	super(TokenType.Y);
+	    	super(VariableType.Y);
 	    }
 
 	    public static Variable getInstance() {
